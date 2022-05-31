@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { test, expect } from "@playwright/experimental-ct-react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test.use({ viewport: { width: 500, height: 500 } });
+
+test("should work", async ({ mount }) => {
+  const component = await mount(<App></App>);
+  await expect(component).toContainText("Learn React");
 });
